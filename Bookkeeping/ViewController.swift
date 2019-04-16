@@ -18,10 +18,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let name = dataArray[indexPath.row]["name"] as? String ?? "No name"
         let cost = dataArray[indexPath.row]["cost"] as? Double ?? 0.0
-        
+        let time = dataArray[indexPath.row]["date"] as? Date ?? Date()
         //cell.textLabel?.text = "\(dataArray[indexPath.row])"
         
-        cell.textLabel?.text = name
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        
+        let dateString = " (" + formatter.string(from: time) + ")"
+        
+        cell.textLabel?.text = name + dateString
         cell.detailTextLabel?.text = "\(cost)"
         return cell
     }
